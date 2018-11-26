@@ -3,9 +3,9 @@ import face_recognition
 import cv2
 import numpy as np
 import time
-
-def show_webcam(mirror=False):
-    cam = cv2.VideoCapture(0)
+mirror = True
+while mirror:
+cam = cv2.VideoCapture(0)
  
     while True:
         ret_val, img = cam.read()
@@ -31,19 +31,13 @@ def show_webcam(mirror=False):
             img = np.asarray(pil_image)
                            
         if mirror: 
-            
             img = cv2.flip(img, 1)
         cv2.imshow('Video', img)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             print(face_landmarks_list)
-            break
+            break    
         
-    cam.release()
-    cv2.destroyAllWindows()
-def main():
-    show_webcam(mirror = True)
-if __name__ == '__main__':
-    main()
+cam.release()
+cv2.destroyAllWindows()
 
-    
  
